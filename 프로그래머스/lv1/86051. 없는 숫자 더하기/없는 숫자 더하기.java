@@ -1,16 +1,11 @@
 
 class Solution {
     public int solution(int[] numbers) {
-        int answer = 0;
-        int [] numarr = new int[10];
-        for(int i = 0; i<numbers.length;i++){
-            numarr[numbers[i]]++;
+   
+        int total = 45;
+        for( int e : numbers){
+            total-=e;
         }
-        for(int i = 0; i<numarr.length; i++){
-            if(numarr[i]==0){
-                answer+=i;
-            }
-        }
-        return answer;
+        return total;
     }
 }
