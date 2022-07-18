@@ -1,24 +1,31 @@
-import java.util.Scanner;
-import java.util.Arrays;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 
-public class Main {
-    public static void main (String[] args) {
 
-        int[] arrA = {1, 2, 3, 4, 5, 6, 7, 8};
-        int[] arrD = {8, 7, 6, 5, 4, 3, 2, 1};
+class Main {
 
-        Scanner s = new Scanner(System.in);
-        int[] nums = new int[8];
-        for (int i = 0; i < nums.length; i++) {
-            nums[i] = s.nextInt();
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+         String [] b = br.readLine().split(" ");
+        //N입력받기
+        int [] a=new int[8];
+        String output ="";
+        for (int i = 0; i < 8; i++) {
+            a[i]=Integer.parseInt(b[i]);
         }
 
-        if (Arrays.equals(nums, arrA)) {
-            System.out.println("ascending");
-        } else if (Arrays.equals(nums, arrD)) {
-            System.out.println("descending");
-        } else {
-            System.out.println("mixed");
+        for (int i = 0; i < 7; i++) {
+            if(a[i]==a[i+1]-1){
+                output ="ascending";
+            }else if(a[i]==a[i+1]+1){
+                output = "descending";
+
+            }else{
+                output = "mixed";
+                break;
+            }
         }
+        System.out.println(output);
     }
 }
