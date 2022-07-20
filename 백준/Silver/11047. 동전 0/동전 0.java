@@ -21,14 +21,13 @@ class Main {
         while(cash!=0){
 
             if (cash -coins[i]>=0) {
-                cash -= coins[i];
-                count++;
+                count += cash/coins[i];
+                cash = cash %coins[i];
             } else {
                 i--;
             }
         }
 
-        sb.append(count);
-        System.out.println(sb);
+        System.out.println(count);
     }
 }
