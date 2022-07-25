@@ -9,7 +9,7 @@ class Main {
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-
+        StringBuilder sb = new StringBuilder();
         int N = Integer.parseInt(br.readLine());
         ArrayList <String> arrayList = new ArrayList<>();
         StringTokenizer st;
@@ -38,7 +38,8 @@ class Main {
            }
        });
         for(String e : arrayList){
-            System.out.println(e);
+            sb.append(e+"\n");
         }
+        System.out.println(sb);
     }
 }
