@@ -1,7 +1,7 @@
 import java.math.BigInteger;
 
 class Solution {
-    public long solution(int price, int money, int count) {
+    public long solution(long price, long money, long count) {
         long answer = 0;
 
         if(count == 1) {
@@ -9,10 +9,7 @@ class Solution {
             return answer;
         }
 
-
-        BigInteger bigSum = BigInteger.valueOf((price + (price*count)));
-        BigInteger multiple = BigInteger.valueOf((count / 2));
-        long gaussSum = bigSum.multiply(multiple).longValue();
+        long gaussSum = (price + (price*count)) * (count / 2);
         
         gaussSum = count % 2 == 0 ? gaussSum : gaussSum + (long) price * ((count/2)+1);
         
