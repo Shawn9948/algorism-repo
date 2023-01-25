@@ -5,7 +5,7 @@ class Solution {
         int remainderNum = 0;
         
         
-        while(n/a>=1){
+        while(n>=a){
              
             if(n%a != 0){
             remainderNum = n%a;
