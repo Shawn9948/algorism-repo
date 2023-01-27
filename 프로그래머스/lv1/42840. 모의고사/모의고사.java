@@ -10,35 +10,20 @@ class Solution {
         int aCount = 0;
         int bCount = 0;
         int cCount = 0;
-        int aI = 0;
-        int bI = 0;
-        int cI = 0;
         int[] a = {1, 2, 3, 4, 5};
         int[] b = {2, 1, 2, 3, 2, 4, 2, 5};
         int[] c = {3, 3, 1, 1, 2, 2, 4, 4, 5, 5};
 
         for (int i = 0; i < answers.length; i++) {
             int num = answers[i];
-            if (num == a[aI]) {
+            if (num == a[i%5]) {
                 aCount++;
             }
-            if (num == b[bI]) {
+            if (num == b[i%8]) {
                 bCount++;
             }
-            if (num == c[cI]) {
+            if (num == c[i%10]) {
                 cCount++;
-            }
-            aI++;
-            bI++;
-            cI++;
-            if (aI == a.length) {
-                aI = 0;
-            }
-            if (bI == b.length) {
-                bI = 0;
-            }
-            if (cI == c.length) {
-                cI = 0;
             }
 
         }
