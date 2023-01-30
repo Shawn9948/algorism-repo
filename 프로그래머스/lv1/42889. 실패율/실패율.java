@@ -9,7 +9,7 @@ class Solution {
         for (int i = 1; i <= N; i++) {
             map.put(i, 0.0);
         }
-//        System.out.println(map);
+
         for (int stage : stages) {
             if (stage == N + 1) {
 
@@ -17,7 +17,7 @@ class Solution {
             }
             map.put(stage, map.getOrDefault(stage, 0.0) + 1);
         }
-//        System.out.println(map);
+
         for (int i = 1; i <= N; i++) {
             totalStages[i - 1] = (map.get(i) / stageCount);
             stageCount -= map.get(i);
@@ -26,8 +26,7 @@ class Solution {
         for (int i = 1; i <= N; i++) {
             map.put(i, totalStages[i-1]*1000000);
         }
-        System.out.println(map);
-//        System.out.println(map);
+        
         List<Map.Entry<Integer, Double>> entryList = new LinkedList<>(map.entrySet());
         entryList.sort(new Comparator<Map.Entry<Integer, Double>>() {
             @Override
