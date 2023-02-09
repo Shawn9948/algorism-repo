@@ -1,27 +1,24 @@
 import java.util.Scanner;
 
 public class Main {
-    public String solution(int count, String str) {
-        String answer = "";
-        String binary = "";
-        for (int i = 0; i < str.length(); i++) {
-            if (str.charAt(i) == '*') binary += "0";
-            else binary += "1";
 
-            if ((i + 1) % 7 == 0) {
-                answer += (char) Integer.parseInt(binary, 2);
-                binary = "";
-            }
+    public String solution(int num, String str){
+        String answer = "";
+        str = str.replace('*', '0').replace('#', '1');
+        for(int i = 0; i< num; i++){
+            String target = str.substring(0, 7);
+            answer += (char)Integer.parseInt(target,2);
+            str = str.substring(7);
         }
         return answer;
     }
 
-    public static void main(String[] args) {
-        Scanner in = new Scanner(System.in);
-        int input = in.nextInt();
-        String input1 = in.next();
+    public static void main(String[] args){
+        Scanner in=new Scanner(System.in);
+        int input1 = in.nextInt();
+        String input2 = in.next();
         Main main = new Main();
-        System.out.println(main.solution(input, input1));
-        return;
+        System.out.println(main.solution(input1,input2));
+        return ;
     }
 }
