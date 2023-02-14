@@ -3,44 +3,36 @@ import java.util.Scanner;
 public class Main {
 
     public int solution(int size, int[][] arr) {
-        int answer = 0;
-        int lCross = 0;
-        int rCross = 0;
+        int count = 0;
+        int[] dx = {1, 0, -1, 0};
+        int[] dy = {0, -1, 0, 1};
         for (int i = 0; i < size; i++) {
-            lCross += arr[i][i];
-            rCross += arr[i][size - i - 1];
-        }
-        answer = Math.max(lCross, rCross);
-
-        int wMax = 0;
-        int lMax = 0;
-        for (int i = 0; i < size; i++) {
-            int widthSum = 0;
-            int lengthSum = 0;
-            for (int k = 0; k < size; k++) {
-                widthSum += arr[i][k];
-                lengthSum += arr[k][i];
+            for (int j = 0; j < size; j++) {
+                boolean check = true;
+                for (int k = 0; k < dx.length; k++) {
+                    int nx = i + dx[k];
+                    int ny = j + dy[k];
+                    if (nx >= 0 && nx < size && ny >= 0 && ny < size && arr[i][j] <= arr[nx][ny]) {
+                        check = false;
+                        break;
+                    }
+                }
+                if (check) count++;
             }
-            if (wMax < widthSum) wMax = widthSum;
-            if (lMax < lengthSum) lMax = lengthSum;
         }
-        answer = Math.max(answer, wMax);
-        answer = Math.max(answer, lMax);
-
-        return answer;
+        return count;
     }
-
 
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
         int input1 = in.nextInt();
+        Main main = new Main();
         int[][] arr = new int[input1][input1];
         for (int i = 0; i < input1; i++) {
             for (int j = 0; j < input1; j++) {
                 arr[i][j] = in.nextInt();
             }
         }
-        Main main = new Main();
         System.out.println(main.solution(input1, arr));
         return;
     }
