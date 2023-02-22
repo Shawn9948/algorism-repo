@@ -7,12 +7,13 @@ public class Main {
         Stack<Character> stack = new Stack<>();
         for (char x : arr) {
             if (x == '(') {
-                stack.add('y');
+                stack.push('y');
             } else {
                 if (stack.size() == 0) return "NO";
                 stack.pop();
             }
         }
+        if(!stack.isEmpty()) return "NO";
         return "YES";
     }
 
