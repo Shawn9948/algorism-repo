@@ -3,17 +3,16 @@ import java.util.*;
 public class Main {
 
     public String solution(String str) {
-        StringBuilder sb = new StringBuilder();
-        int count = 0;
+        String answer = "";
+        Stack<Character> stack = new Stack<>();
         for (char x : str.toCharArray()) {
-            if (x == '(') count++;
-            else if (x == ')') {
-                count--;
-                continue;
-            }
-            if (count == 0) sb.append(x);
+            if (x == ')') while (stack.pop() != '(') ;
+            else stack.push(x);
         }
-        return sb.toString();
+        for (Character character : stack) {
+            answer += character;
+        }
+        return answer;
     }
 
     public static void main(String[] args) {
