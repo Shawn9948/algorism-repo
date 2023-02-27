@@ -12,21 +12,12 @@ public class Main {
     }
 
     public String solution(int size, int[] arr) {
-        int min = arr[0];
-        int targetIndex = 0;
-        int changeIndex = 0;
-
-        while (targetIndex < size - 1) {
-            for (int i = targetIndex + 1; i < size; i++) {
-                if (min > arr[i]) {
-                    min = arr[i];
-                    changeIndex = i;
-                }
+        for (int i = 0; i < size - 1; i++) {
+            int targetId = i;
+            for (int j = i + 1; j < size; j++) {
+                if (arr[j] < arr[targetId]) targetId = j;
             }
-            swap(arr, targetIndex, changeIndex);
-            targetIndex++;
-            min = arr[targetIndex];
-            changeIndex = targetIndex;
+            swap(arr, i, targetId);
         }
         StringBuilder sb = new StringBuilder();
         for (int x : arr) {
