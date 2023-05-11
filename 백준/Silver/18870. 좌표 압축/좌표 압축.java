@@ -22,10 +22,11 @@ public class Main {
 
         int[] array = set.stream().mapToInt(a -> a).toArray();
         Arrays.sort(array);
+
         Map<Integer, Integer> map = new HashMap<>();
-        int j =0;
+        int j = 0;
         for (Integer integer : array) {
-            Integer value = map.get(integer);
+            Integer value = map.get(integer);   
             if (value != null) {
                 map.put(integer, value);
             } else {
@@ -33,13 +34,12 @@ public class Main {
                 j++;
             }
         }
+
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < size; i++) {
-            arr[i] = map.get(arr[i]);
+            sb.append(map.get(arr[i])).append(" ");
         }
-        for (int i : arr) {
-            sb.append(i).append(" ");
-        }
+
         System.out.println(sb);
     }
 }
