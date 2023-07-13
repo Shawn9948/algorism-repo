@@ -1,30 +1,31 @@
 import java.util.*;
-class Solution {
-    private Set<Integer> set = new HashSet<>();
-    
+public class Solution {
+    Set<Integer> set = new HashSet();
+    boolean[] ch;
+
     public int solution(String numbers) {
-        int answer = 0;
-        
-       for(int i = 0; i< numbers.length(); i++){
-           dfs("", numbers);
-       }
-        for(int x : set){
-            if(isPrimary(x)) answer++;
-        }
-        return answer;
-    }
-    
-    private void dfs(String comb, String others) {
-        if (!comb.equals(""))
-            set.add(Integer.valueOf(comb));
-        for (int i = 0; i < others.length(); i++)
-            dfs(comb + others.charAt(i), others.substring(0, i) + others.substring(i + 1));
+        ch = new boolean[numbers.length()];
+        dfs("", numbers);
+        return set.size();
     }
 
-    private boolean isPrimary(int x) {
-        if (x == 0 || x == 1) return false;
-        for (int i = 2; i <= Math.sqrt(x); i++) {
-            if (x % i == 0) return false;
+    public void dfs(String num, String target) {
+        if (num.length() > 0) {
+            int prime = Integer.parseInt(num);
+            if (isPrime(prime)) set.add(prime);
+        }
+        for (int i = 0; i < target.length(); i++) {
+            if (ch[i]) continue;
+            ch[i] = true;
+            dfs(num + target.charAt(i), target);
+            ch[i] = false;
+        }
+    }
+
+    public boolean isPrime(int num) {
+        if (num == 0 || num == 1) return false;
+        for (int i = 2; i * i <= num; i++) {
+            if (num % i == 0) return false;
         }
         return true;
     }
