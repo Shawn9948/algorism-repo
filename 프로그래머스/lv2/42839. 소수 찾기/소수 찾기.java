@@ -18,6 +18,7 @@ public class Solution {
             if (ch[i]) continue;
             ch[i] = true;
             dfs(num + target.charAt(i), target);
+            dfs(num, target);
             ch[i] = false;
         }
     }
