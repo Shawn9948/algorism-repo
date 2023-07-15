@@ -2,20 +2,32 @@ import java.util.*;
 class Solution {
     public int[] solution(int[] prices) {
         int[] answer = new int[prices.length];
-        Stack<Integer> stack = new Stack<>();
-        
-        for(int i = 0; i<prices.length; i++){
-            while(!stack.isEmpty() && prices[stack.peek()] > prices[i]){
-                int pop = stack.pop();
-                answer[pop] = i- pop;
-            }
-            stack.push(i);
-        }
-        
-        while(!stack.isEmpty()){
-            int pop = stack.pop();
-            answer[pop] = prices.length-1 -pop;
-        }
+
         return answer;
     }
 }
+
+//[1, 2, 3, 4, 5, 6, 1, 1, 2, 3, 1, 2, 3] // [12, 5, 4, 3, 2, 1, 6, 5, 2, 1, 2, 1, 0]
+//[1, 2, 3, 4, 1] // [4, 3, 2, 1, 0]
+//[5, 4, 3, 2, 5] // [1, 1, 1, 1, 0]
+//[1, 2, 3, 2, 3, 1] // [5, 4, 1, 2, 1, 0]
+
+//가격이 떨어지지 않은 기간 
+// 1 -> 2 -> 3 -> 2 -> 3
+// 4 -> 3 -> 1 -> 1 -> 0
+
+
+// stack에 다 집어 넣은 후 뺀 것과 뺄 것 비교
+// 결과 값은 queue에 집어 넣는다. 
+// 1.초기 뺀 값은 큐에 0 넣기 
+// 2. 비교하여 뺀 값이 더 크다면 뒤 숫자는 1
+// 2-1. 뺀 값이 더 적어도 뒤 숫자는 1 
+// 3. period 변수 생성 후 동적 기간 적용
+// 4. lowest 변수 생성 후 적은 값 
+
+// 전체 시간 변수 
+// highest num 변수
+// for문 돌면서 리스트에 존재하는 변수 업데이트 
+// 1 -> 2 -> 3 -> 3 -> 4
+// 4 -> 3 -> 2 -> 1 -> 0  
+// Stack
