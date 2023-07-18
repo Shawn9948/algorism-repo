@@ -8,14 +8,12 @@ public class Main {
         int total = 0;
         while (lp <= rp) {
             if (total >= s) {
+                answer = Math.min(answer, (rp - lp));
                 total -= arr[lp++];
             }
             else if (rp == n) break;
-            else {
+            else if (total < s){
                 total += arr[rp++];
-            }
-            if (total >= s) {
-                answer = Math.min(answer, (rp - lp));
             }
         }
         if (answer == Integer.MAX_VALUE) answer = 0;
