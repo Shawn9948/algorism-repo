@@ -4,6 +4,7 @@ class Solution {
     int answer = -1;
     boolean flag = false;
     boolean[][] ch;
+    Queue<Spot> queue = new LinkedList<>();
 
     static class Spot {
         public Spot(int x, int y, int count) {
@@ -17,18 +18,18 @@ class Solution {
         private int count = 0;
     }
 
-    Queue<Spot> queue = new LinkedList<>();
-
     public int solution(int[][] maps) {
         int[] cal = new int[]{1, -1, 1, -1};
         ch = new boolean[maps.length][maps[0].length];
         queue.offer(new Spot(0, 0, 1));
 
         while (!queue.isEmpty()) {
-            if(flag) break;
+            if (flag) break;
             Spot spot = queue.poll();
-            if(spot.x >= maps.length || spot.x < 0 || spot.y >= maps[0].length || spot.y <0) continue;
-            if (ch[spot.x][spot.y]) continue;
+            if (spot.x >= maps.length || spot.x < 0 || spot.y >= maps[0].length || spot.y < 0)
+                continue;
+            else if (ch[spot.x][spot.y])
+                continue;
             else if (maps[spot.x][spot.y] == 0) {
                 continue;
             } else if (spot.x == maps.length - 1 && spot.y == maps[0].length - 1) {
