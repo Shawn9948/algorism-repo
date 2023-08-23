@@ -1,20 +1,23 @@
-import java.util.Scanner;
+
+import java.io.*;
+import java.util.Arrays;
 
 public class Main {
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        int A = sc.nextInt();
-        String B = sc.next();
-        sc.close();
-
-        char [] numArr = B.toCharArray();
-        int sum = 0;
-
-        for (int i = 0; i < A; i++) {
-            sum += numArr[i]-'0';
+    public int solution(int n, String m) {
+        int answer = 0;
+        int[] array = Arrays.stream(m.split("")).mapToInt(Integer::parseInt).toArray();
+        for (int i : array) {
+            answer += i;
         }
-        System.out.println(sum);
-        }
+        return answer;
     }
 
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int n = Integer.parseInt(br.readLine());
+        String m = br.readLine();
 
+        Main main = new Main();
+        System.out.println(main.solution(n, m));
+    }
+}
