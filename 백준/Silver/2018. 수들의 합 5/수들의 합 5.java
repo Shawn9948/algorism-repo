@@ -5,24 +5,20 @@ import java.io.*;
 public class Main {
     public int solution(int num) {
         int answer = 0;
-        int[] arr = new int[num];
-        for (int i = 1; i <= num; i++) {
-            arr[i - 1] = i;
-        }
-        int lp = 0;
-        int rp = 0;
+        int lp = 1;
+        int rp = 1;
         int sum = 0;
         while (lp <= rp) {
             if (sum < num) {
-                sum += arr[rp];
-                if (rp + 1 != num) {
+                sum += rp;
+                if (rp + 1 <= num) {
                     rp++;
                 }
                 continue;
             } else if (sum == num) {
                 answer++;
             }
-            sum -= arr[lp++];
+            sum -= lp++;
         }
         return answer;
     }
