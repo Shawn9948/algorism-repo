@@ -1,36 +1,40 @@
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+
+import java.io.*;
+import java.util.Arrays;
 import java.util.StringTokenizer;
 
-class Main {
+public class Main {
+     public int[] solution(int[] arr) {
+         int[] dp = new int[arr.length];
+         dp[0] = arr[0];
+         for(int i = 1; i < dp.length; i++){
+             dp[i] = dp[i - 1] + arr[i];
+         }
+         return dp;
+    }
+
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        StringBuilder sb = new StringBuilder();
         StringTokenizer st = new StringTokenizer(br.readLine());
-        
-        //A, B입력받기
-        int A = Integer.parseInt(st.nextToken());
-        int B = Integer.parseInt(st.nextToken());
-        
-        // 누적합 배열을 만들예정 0번째 인덱스는 0으로 설정
-        int[] totalSumArr = new int[A + 1];
-        String[] stringArr = br.readLine().split(" ");
-        int j = 0;
-        //누적합 배열에 값 삽입
-        for (int i = 1; i <= A; i++) {
-            totalSumArr[i] = totalSumArr[i - 1] + Integer.parseInt(stringArr[j]);
-            j++;
+        StringBuilder sb = new StringBuilder();
+        int n = Integer.parseInt(st.nextToken());
+        int m = Integer.parseInt(st.nextToken());
+        int[] arr = Arrays.stream(br.readLine().split(" ")).mapToInt(Integer::parseInt).toArray();
+
+        Main main = new Main();
+        int[] dp = main.solution(arr);
+
+        for (int i = 0; i < m; i++) {
+            st = new StringTokenizer(br.readLine());
+            int lp = Integer.parseInt(st.nextToken());
+            int rp = Integer.parseInt(st.nextToken());
+
+            if (lp == 1) {
+                sb.append(dp[rp - 1]).append("\n");
+            } else {
+                sb.append(dp[rp - 1] - dp[lp - 2]).append("\n");
+            }
         }
-        
-        //누적합 중 B-A = 그 사이의 누적합
-        for (int i = 0; i < B; i++) {
-            StringTokenizer st2 = new StringTokenizer(br.readLine());
-            int first = Integer.parseInt(st2.nextToken());
-            int second = Integer.parseInt(st2.nextToken());
-            int result = totalSumArr[second] - totalSumArr[first - 1];
-            sb.append(result + "\n");
-        }
-        System.out.println(sb);
+        System.out.println(sb.toString());
     }
 }
