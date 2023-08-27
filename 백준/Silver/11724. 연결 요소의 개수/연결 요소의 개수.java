@@ -36,6 +36,7 @@ public class Main {
     }
 
     private static void dfs(int[][] arr, int index) {
+        if(ch[index]) return;
         ch[index] = true;
         for (int i = 1; i < arr.length; i++) {
             if (arr[index][i] == 1) {
