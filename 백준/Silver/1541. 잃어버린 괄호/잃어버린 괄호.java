@@ -1,37 +1,23 @@
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.*;
+import java.io.*;
 
 
-class Main {
+public class Main {
+
+
     public static void main(String[] args) throws IOException {
-        /*-로 문자열을 나누고 그뒤 반복문을 돌려서 +들을 각각 더해주고 그 더해준 값들을 모두 빼준다. 그값이 결과값이다. */
-
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        String[] arr = br.readLine().split("-");
+        int answer = 0;
 
-        int sum = Integer.MAX_VALUE;
-
-        // - 로 모두 구분해주기
-        StringTokenizer st = new StringTokenizer(br.readLine(), "-");
-
-        while (st.hasMoreTokens()) {
-            int temp = 0;
-            //-로 구분 된 토큰들중 +가 있다면 +로 나눠주고 없다면 그냥 집어넣어주기
-            StringTokenizer st2 = new StringTokenizer(st.nextToken(), "+");
-
-            //temp에 값들을 더해주기
-            while (st2.hasMoreTokens()) {
-                String b1 = st2.nextToken();
-                temp += Integer.parseInt(b1);
+        for (int i = 0; i < arr.length; i++) {
+            int tmp = 0;
+            String[] split = arr[i].split("\\+"); // 역슬래시 기능 : +만 존재할 시 정규식으로 인식함. \\로 문자열이라고 선언
+            for (String s : split) {
+                tmp += Integer.parseInt(s);
             }
-            if(sum == Integer.MAX_VALUE){
-                sum = temp;
-            } else {
-                //첫번째 숫자 이후로 들어오는 temp값들은 빼주기
-                sum -= temp;
-            }
+            if(i == 0) answer += tmp;
+            else answer -= tmp;
         }
-        System.out.println(sum);
+        System.out.println(answer);
     }
 }
